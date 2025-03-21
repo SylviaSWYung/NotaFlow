@@ -91,7 +91,7 @@ const NoteCard: React.FC<Props> = ({ note, onDelete }) => {
 
       window.dispatchEvent(new CustomEvent("globalSnackbar", { detail: "Notatet er slettet!" }));
 
-      onDelete(note.id);
+      onDelete?.(note.id);
     } catch (err) {
       console.error("Failed to delete note:", err);
     }

@@ -33,7 +33,7 @@ const RatingPopup: React.FC<RatingPopupProps> = ({ open, onClose, onSave, noteTi
                 <Rating
                     name="note-rating"
                     value={rating}
-                    onChange={(event, newValue) => setRating(newValue)}
+                    onChange={(_event, newValue) => setRating(newValue)}
                     onMouseOver={(event) => event.currentTarget.style.cursor = "pointer"}
                     max={5}
                 />

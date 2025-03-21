@@ -136,14 +136,14 @@ const PrivateGroupComponent: React.FC = () => {
       enrichedNotes = enrichedNotes.filter((n) => n !== undefined);
 
       enrichedNotes.sort((a, b) => {
-        const dateA = new Date(a.shared_metadata.date).getTime();
-        const dateB = new Date(b.shared_metadata.date).getTime();
+        const dateA = a ? new Date(a.shared_metadata.date).getTime() : 0;
+        const dateB = b ? new Date(b.shared_metadata.date).getTime() : 0;
         return dateA - dateB;
       });
 
       console.log(enrichedNotes);
 
-      setGroupNotes(enrichedNotes);
+      setGroupNotes(enrichedNotes.filter((note): note is SharedNoteWithNoteData => note !== undefined));
     } catch (error) {
       console.error("Error fetching group notes:", error);
     } finally {
@@ -153,6 +153,7 @@ const PrivateGroupComponent: React.FC = () => {
     }
   };
 
+  // eslint-disable-next-line react-hooks/rules-of-hooks
   useEffect(() => {
     if (groupNotes.length > 0) {
       notesEndRef.current?.scrollIntoView({ behavior: "smooth" });

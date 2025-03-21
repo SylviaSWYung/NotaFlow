@@ -120,7 +120,7 @@ const FormComponent = () => {
 
     //Create input
     const input: CreateNoteInput = {
-      user_id: auth.currentUser.uid,
+      user_id: auth.currentUser ? auth.currentUser.uid : "",
       subject_id: selectedSubject.id,
       title: title,
       content: text,
